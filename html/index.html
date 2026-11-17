@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bl_daily</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="hidden">
+        <div class="backdrop"></div>
+
+        <main class="panel" role="dialog" aria-labelledby="daily-title">
+            <!-- En-tête -->
+            <header class="panel-header">
+                <div class="header-text">
+                    <span class="panel-tag"><span class="pulse-dot"></span><span data-i18n="tag"></span></span>
+                    <h1 id="daily-title" data-i18n="title"></h1>
+                    <p class="subtitle" data-i18n="subtitle"></p>
+                </div>
+
+                <div class="streak-badge">
+                    <i class="fa-solid fa-fire"></i>
+                    <div class="streak-text">
+                        <span data-i18n="streak"></span>
+                        <b id="streak-value">0 / 7</b>
+                    </div>
+                </div>
+
+                <button class="close-btn" id="close-btn" type="button" aria-label="Fermer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </header>
+
+            <!-- Progression de la série -->
+            <div class="progress" id="progress"></div>
+
+            <!-- Bandeau série perdue -->
+            <div class="banner hidden" id="banner">
+                <i class="fa-solid fa-heart-crack"></i>
+                <span data-i18n="streak_lost"></span>
+            </div>
+
+            <!-- Calendrier 7 jours -->
+            <section class="days" id="days"></section>
+
+            <!-- Pied : règle + action -->
+            <footer class="panel-footer">
+                <div class="footer-info">
+                    <p><i class="fa-solid fa-circle-info"></i><span id="rule-text"></span></p>
+                    <p class="hint">
+                        <kbd data-i18n="key_escape">ÉCHAP</kbd><span data-i18n="close_hint"></span>
+                        <span class="copyright" data-i18n="copyright"></span>
+                    </p>
+                </div>
+
+                <div class="footer-action">
+                    <button class="claim-btn hidden" id="claim-btn" type="button">
+                        <i class="fa-solid fa-gift" id="claim-icon"></i>
+                        <span id="claim-label"></span>
+                    </button>
+
+                    <div class="countdown hidden" id="countdown">
+                        <span class="cycle-done hidden" id="cycle-done" data-i18n="cycle_done"></span>
+                        <span class="countdown-label" data-i18n="next_reward"></span>
+                        <b><i class="fa-regular fa-clock"></i><span id="countdown-value">00:00:00</span></b>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Pop-up d'incitation compacte, sans focus (le joueur garde le contrôle) -->
+    <aside class="popup hidden" id="popup">
+        <div class="popup-day">
+            <span data-i18n="day"></span>
+            <b id="popup-day"></b>
+        </div>
+
+        <div class="popup-content">
+            <span class="popup-tag"><span class="pulse-dot"></span><span id="popup-tag"></span></span>
+            <span class="popup-title" id="popup-title"></span>
+            <span class="popup-sub" id="popup-sub"></span>
+        </div>
+
+        <div class="popup-key">
+            <kbd class="keycap" id="popup-key">F9</kbd>
+            <span data-i18n="popup_open"></span>
+        </div>
+
+        <div class="popup-timer" id="popup-timer"></div>
+    </aside>
+
+    <!-- Notifications : en haut au centre, au-dessus du menu -->
+    <div id="toasts"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
